@@ -1,9 +1,29 @@
-import { useModel } from '@umijs/max';
-import { ConfigProvider, theme } from 'antd';
+import { useAntdToken } from '@/hooks/use-antd-token';
 import Fullscreen from './components/fullscreen';
 import styles from './index.less';
 
-export default function HomePage() {
+import { useModel } from '@umijs/max';
+import { ConfigProvider, theme } from 'antd';
+import Reset from './components/reset';
+import Setting from './components/setting';
+
+function InnerPage() {
+  const token = useAntdToken();
+
+  return (
+    <div
+      className={styles.pageHome}
+      style={{ background: token.colorBgContainer, color: token.colorText }}
+    >
+      <div className={styles.floatBtnGroup}>
+        <Reset />
+        <Setting />
+        <Fullscreen />
+      </div>
+    </div>
+  );
+}
+const PageHome = () => {
   const { isPaused } = useModel('global');
 
   return (
@@ -12,10 +32,9 @@ export default function HomePage() {
         algorithm: isPaused ? theme.defaultAlgorithm : theme.darkAlgorithm,
       }}
     >
-      <div className={styles.pageHome}>
-        123456
-        <Fullscreen />
-      </div>
+      <InnerPage />
     </ConfigProvider>
   );
-}
+};
+
+export default PageHome;

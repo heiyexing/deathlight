@@ -3,4 +3,21 @@
   height: 100vh;
   position: relative;
   overflow: hidden;
+
+  .floatBtnGroup {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 16px;
+    opacity: 0.2;
+    transition: opacity 0.1s;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    > * {
+      margin-left: 8px;
+    }
+  }
 }
