@@ -1,11 +1,11 @@
 import { useLocalStorageState } from 'ahooks';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const useGlobal = () => {
   const [totalRecallTime, setTotalRecallTime] = useLocalStorageState(
     'totalRecallTime',
     {
-      defaultValue: 30 * 1000,
+      defaultValue: 30 * 60 * 1000,
     },
   );
 
@@ -16,7 +16,7 @@ const useGlobal = () => {
   const [totalPauseTime, setTotalPauseTime] = useLocalStorageState(
     'totalPauseTime',
     {
-      defaultValue: 60 * 1000,
+      defaultValue: 60 * 60 * 1000,
     },
   );
 
@@ -25,6 +25,24 @@ const useGlobal = () => {
   });
 
   const [isPaused, setIsPaused] = useState(false);
+
+  const intervelRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (isPaused) {
+      intervelRef.current = setInterval(() => {
+        setPauseTime((pauseTime) => {
+          const newPauseTime = (pauseTime ?? 0) - 1000;
+          return newPauseTime < 0 ? 0 : newPauseTime;
+        });
+      }, 1000) as unknown as number;
+    } else {
+      if (intervelRef.current) {
+        clearInterval(intervelRef.current);
+        intervelRef.current = null;
+      }
+    }
+  }, [isPaused]);
 
   return {
     isPaused,

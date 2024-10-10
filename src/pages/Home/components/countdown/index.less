@@ -1,0 +1,28 @@
+.countdown {
+  display: flex;
+  align-items: flex-start;
+  user-select: none;
+
+  @font-size: 150px;
+
+  .countdownLabel {
+    width: 240px;
+    line-height: @font-size;
+    font-size: 30px;
+  }
+
+  .countdownValue {
+    font-size: @font-size;
+    line-height: @font-size;
+  }
+
+  .countdownOpeartion {
+    padding: 12px 0;
+    opacity: 0;
+    transition: opacity 0.1s;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

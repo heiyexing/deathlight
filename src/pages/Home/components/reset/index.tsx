@@ -1,8 +1,16 @@
 import { RedoOutlined } from '@ant-design/icons';
-import { Button, Popconfirm } from 'antd';
+import { useModel } from '@umijs/max';
+import { Button, message, Popconfirm } from 'antd';
 
 const Reset = () => {
-  const onReset = () => {};
+  const { setPauseTime, setRecallTime, totalPauseTime, totalRecallTime } =
+    useModel('global');
+
+  const onReset = () => {
+    setPauseTime(totalPauseTime);
+    setRecallTime(totalRecallTime);
+    message.success('重置成功');
+  };
 
   return (
     <Popconfirm

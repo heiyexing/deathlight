@@ -15,4 +15,6 @@ export default defineConfig({
     },
   ],
   npmClient: 'yarn',
+  base: '/death-light',
+  publicPath: '/death-light/',
 });
