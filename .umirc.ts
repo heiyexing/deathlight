@@ -1,6 +1,7 @@
 import { defineConfig } from '@umijs/max';
 
 export default defineConfig({
+  title: 'Death Light',
   antd: {},
   access: false,
   model: {},
@@ -15,6 +16,6 @@ export default defineConfig({
     },
   ],
   npmClient: 'yarn',
-  base: '/death-light',
-  publicPath: '/death-light/',
+  base: '/deathlight',
+  publicPath: '/deathlight/',
 });

@@ -20,6 +20,7 @@ export default function Pause() {
       className={styles.pauseBtn}
       icon={isPaused ? <PlayCircleOutlined /> : <PauseCircleOutlined />}
       onClick={onTogglePause}
+      onFocus={(e) => e.target.blur()}
     />
   );
 }
