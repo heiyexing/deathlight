@@ -3,6 +3,7 @@ import Fullscreen from './components/fullscreen';
 import styles from './index.less';
 
 import { useModel } from '@umijs/max';
+import { useKeyPress } from 'ahooks';
 import { ConfigProvider, theme } from 'antd';
 import Countdown from './components/countdown';
 import Pause from './components/pause';
@@ -13,6 +14,18 @@ function InnerPage() {
   const { recallTime, setRecallTime, pauseTime, setPauseTime } =
     useModel('global');
   const token = useAntdToken();
+
+  useKeyPress('leftarrow', () => {
+    setRecallTime((recallTime = 0) => {
+      return recallTime - 60 * 1000 > 0 ? recallTime - 60 * 1000 : 0;
+    });
+  });
+
+  useKeyPress('rightarrow', () => {
+    setRecallTime((recallTime = 0) => {
+      return recallTime + 60 * 1000;
+    });
+  });
 
   return (
     <div

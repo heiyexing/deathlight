@@ -14,13 +14,15 @@ export default function Pause() {
   useKeyPress('Space', onTogglePause);
 
   return (
-    <Button
-      type="text"
-      size="large"
-      className={styles.pauseBtn}
-      icon={isPaused ? <PlayCircleOutlined /> : <PauseCircleOutlined />}
-      onClick={onTogglePause}
-      onFocus={(e) => e.target.blur()}
-    />
+    <div style={{ height: 0 }}>
+      <Button
+        type="text"
+        size="large"
+        className={styles.pauseBtn}
+        icon={isPaused ? <PlayCircleOutlined /> : <PauseCircleOutlined />}
+        onClick={onTogglePause}
+        onFocus={(e) => e.target.blur()}
+      />
+    </div>
   );
 }
